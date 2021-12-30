@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import ExploreComponent from '../../components/ExploreComponent';
 import RecentsCarousel from '../../components/RecentsCarousel';
 
 import { TitleOrange, TitlePurple, Wrapper } from './styles';
@@ -11,7 +11,7 @@ const Home: React.FC = () => {
         F<TitleOrange>ai</TitleOrange>ble
       </TitlePurple>
       <RecentsCarousel />
-      <Text>EEEEEE</Text>
+      <ExploreComponent />
     </Wrapper>
   );
 };
