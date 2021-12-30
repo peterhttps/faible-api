@@ -1,13 +1,14 @@
 import React from 'react';
 import { Text } from 'react-native';
+
 import { Wrapper } from './styles';
 
-const Home: React.FC = () => {
+const Search: React.FC = () => {
   return (
     <Wrapper>
-      <Text>Home Page</Text>
+      <Text>Search Page</Text>
     </Wrapper>
   );
 }
 
-export default Home;
+export default Search;
