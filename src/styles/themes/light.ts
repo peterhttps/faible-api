@@ -17,11 +17,11 @@ export default {
   },
   colors: {
     typography: {
-      primary: '#000'
+      primary: '#000',
     },
     orange: '#D00000',
     purple: '#03071E',
     primary: '#000',
     background: '#E5E5E5',
-  }
-}
+  },
+};

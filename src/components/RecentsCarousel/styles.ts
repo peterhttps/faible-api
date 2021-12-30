@@ -8,22 +8,24 @@ export const Wrapper = styled.View`
 export const Title = styled.Text`
   font-weight: bold;
   margin-left: ${props => props.theme.spacing.l};
-  margin-bottom:  ${props => props.theme.spacing.m};
+  margin-bottom: ${props => props.theme.spacing.s};
   font-size: 18px;
 `;
 
-export const CarouselView = styled.View<{ width: number, height: number }>`
+export const CarouselView = styled.View<{ width: number; height: number }>`
   height: ${props => `${props.height}px`};
   width: ${props => `${props.width}px`};
   background: dodgerblue;
-  border-top-left-radius: 15;
-  border-top-right-radius: 15;
-  border-bottom-left-radius: 15;
-  border-bottom-right-radius: 15;
-
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 `;
 
-export const BackgroundImageContainer = styled.ImageBackground<{ width: number, height: number }>`
+export const BackgroundImageContainer = styled.ImageBackground<{
+  width: number;
+  height: number;
+}>`
   height: ${props => `${props.height}px`};
   width: ${props => `${props.width}px`};
   flex: 1;

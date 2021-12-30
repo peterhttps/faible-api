@@ -9,6 +9,6 @@ const Search: React.FC = () => {
       <Text>Search Page</Text>
     </Wrapper>
   );
-}
+};
 
 export default Search;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components/native';
 import Navigation from './navigation/Navigation';
@@ -14,6 +13,6 @@ const App: React.FC = () => {
       <StatusBar style="auto" translucent={false} />
     </ThemeProvider>
   );
-}
+};
 
 export default App;
