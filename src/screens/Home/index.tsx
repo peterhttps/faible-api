@@ -1,11 +1,15 @@
 import React from 'react';
+import RecentsCarousel from '../../components/RecentsCarousel';
 import { Text } from 'react-native';
-import { Wrapper } from './styles';
+
+import { TitleOrange, TitlePurple, Wrapper } from './styles';
 
 const Home: React.FC = () => {
   return (
     <Wrapper>
-      <Text>Home Page</Text>
+      <TitlePurple>F<TitleOrange>ai</TitleOrange>ble</TitlePurple>
+      <RecentsCarousel />
+      <Text>EEEEEE</Text>
     </Wrapper>
   );
 }
