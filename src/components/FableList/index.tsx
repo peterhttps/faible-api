@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import FableItem from '../FableItem';
 import { Wrapper } from './styles';
 
-// import { Container } from './styles';
-
 const FableList: React.FC = () => {
   const [items] = useState([
     {

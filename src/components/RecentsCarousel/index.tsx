@@ -10,7 +10,6 @@ import {
   TitleContainer,
   Wrapper,
 } from './styles';
-// import { Container } from './styles';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.85);
