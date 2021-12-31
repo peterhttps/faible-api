@@ -12,7 +12,7 @@ export const Title = styled.Text`
   font-size: 18px;
 `;
 
-export const CarouselView = styled.View<{ width: number; height: number }>`
+export const CarouselView = styled.TouchableOpacity<{ width: number; height: number }>`
   height: ${props => `${props.height}px`};
   width: ${props => `${props.width}px`};
   background: dodgerblue;

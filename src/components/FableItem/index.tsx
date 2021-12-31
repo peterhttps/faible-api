@@ -17,7 +17,7 @@ interface IProps {
 
 const FableItem: React.FC<IProps> = ({ title, description, image }: IProps) => {
   return (
-    <Wrapper onPress={() => console.log('entered')}>
+    <Wrapper activeOpacity={0.8}>
       <ImageInfosContainer>
         <ItemImage
           source={{

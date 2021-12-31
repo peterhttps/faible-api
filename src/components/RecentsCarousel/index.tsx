@@ -42,7 +42,7 @@ const RecentsCarousel: React.FC = () => {
 
   const renderItem = ({ item }) => {
     return (
-      <CarouselView height={ITEM_HEIGHT} width={ITEM_WIDTH}>
+      <CarouselView height={ITEM_HEIGHT} width={ITEM_WIDTH} activeOpacity={0.9}>
         <BackgroundImageContainer
           source={{ uri: item.image }}
           resizeMode="cover"

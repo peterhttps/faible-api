@@ -34,7 +34,7 @@ const ExploreComponent: React.FC = () => {
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {items.map(item => {
           return (
-            <ListItem key={item.title} activeOpacity={0.6}>
+            <ListItem key={item.title} activeOpacity={0.9}>
               <BackgroundImageContainer
                 source={{ uri: item.image }}
                 resizeMode="cover"
