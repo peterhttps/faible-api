@@ -18,6 +18,7 @@ export default {
   colors: {
     typography: {
       primary: '#000',
+      secondary: '#AAAAAA',
     },
     orange: '#D00000',
     purple: '#03071E',

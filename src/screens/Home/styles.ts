@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-export const Wrapper = styled(SafeAreaView)`
+export const Wrapper = styled.ScrollView`
   flex: 1;
   padding-top: ${props => props.theme.spacing.m};
 `;
@@ -17,4 +16,12 @@ export const TitleOrange = styled.Text`
   font-size: 36px;
   color: ${props => props.theme.colors.orange};
   font-weight: bold;
+`;
+
+export const DescriptionTitle = styled.Text`
+  margin-left: ${props => props.theme.spacing.l};
+  margin-top: ${props => props.theme.spacing.s};
+  margin-bottom: ${props => props.theme.spacing.m};
+  font-weight: bold;
+  font-size: 18px;
 `;

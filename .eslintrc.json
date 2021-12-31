@@ -44,6 +44,7 @@
     "react/style-prop-object": "off",
     "react/no-unstable-nested-components": "off",
     "import/no-extraneous-dependencies": "off",
-    "func-names": "off"
+    "func-names": "off",
+    "no-console": "off"
   }
 }

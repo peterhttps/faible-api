@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { BackgroundImageContainer, CardTitle, ListItem, Title, TitleContainer, Wrapper } from './styles';
-
-// import { Container } from './styles';
+import {
+  BackgroundImageContainer,
+  CardTitle,
+  ListItem,
+  Title,
+  TitleContainer,
+  Wrapper,
+} from './styles';
 
 const ExploreComponent: React.FC = () => {
-  const [items, setItems] = useState([
+  const [items] = useState([
     {
       title: 'Fantasia',
       image:
@@ -29,7 +34,7 @@ const ExploreComponent: React.FC = () => {
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {items.map(item => {
           return (
-            <ListItem key={item.title}>
+            <ListItem key={item.title} activeOpacity={0.6}>
               <BackgroundImageContainer
                 source={{ uri: item.image }}
                 resizeMode="cover"

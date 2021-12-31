@@ -23,6 +23,7 @@ declare module 'styled-components' {
     colors: {
       typography: {
         primary: string;
+        secondary: string;
       };
       orange: string;
       purple: string;

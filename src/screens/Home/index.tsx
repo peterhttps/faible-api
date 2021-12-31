@@ -1,8 +1,9 @@
 import React from 'react';
 import ExploreComponent from '../../components/ExploreComponent';
+import FableList from '../../components/FableList';
 import RecentsCarousel from '../../components/RecentsCarousel';
 
-import { TitleOrange, TitlePurple, Wrapper } from './styles';
+import { DescriptionTitle, TitleOrange, TitlePurple, Wrapper } from './styles';
 
 const Home: React.FC = () => {
   return (
@@ -12,6 +13,8 @@ const Home: React.FC = () => {
       </TitlePurple>
       <RecentsCarousel />
       <ExploreComponent />
+      <DescriptionTitle>Populares</DescriptionTitle>
+      <FableList />
     </Wrapper>
   );
 };

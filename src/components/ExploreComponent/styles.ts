@@ -7,11 +7,11 @@ export const Wrapper = styled.View`
 export const Title = styled.Text`
   font-weight: bold;
   margin-left: ${props => props.theme.spacing.l};
-  margin-bottom: ${props => props.theme.spacing.s};
+  margin-bottom: ${props => props.theme.spacing.xs};
   font-size: 18px;
 `;
 
-export const ListItem = styled.View`
+export const ListItem = styled.TouchableOpacity`
   height: 160px;
   width: 160px;
   background: dodgerblue;
@@ -35,6 +35,7 @@ export const TitleContainer = styled.View`
   border-bottom-right-radius: 10px;
   height: 30px;
   justify-content: center;
+  opacity: 1;
 `;
 
 export const CardTitle = styled.Text`
