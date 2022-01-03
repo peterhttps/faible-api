@@ -19,6 +19,7 @@ export default {
     typography: {
       primary: '#000',
       secondary: '#AAAAAA',
+      tertiary: '#8A8A8A',
     },
     orange: '#D00000',
     purple: '#03071E',

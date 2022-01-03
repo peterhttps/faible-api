@@ -24,6 +24,7 @@ declare module 'styled-components' {
       typography: {
         primary: string;
         secondary: string;
+        tertiary: string;
       };
       orange: string;
       purple: string;
