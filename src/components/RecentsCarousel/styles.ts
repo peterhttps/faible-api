@@ -18,7 +18,7 @@ export const CarouselView = styled.TouchableOpacity<{
 }>`
   height: ${props => `${props.height}px`};
   width: ${props => `${props.width}px`};
-  background: dodgerblue;
+  background: white;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom-left-radius: 15px;

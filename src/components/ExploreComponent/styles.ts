@@ -14,7 +14,7 @@ export const Title = styled.Text`
 export const ListItem = styled.TouchableOpacity`
   height: 160px;
   width: 160px;
-  background: dodgerblue;
+  background: white;
   margin: 10px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;

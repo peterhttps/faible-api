@@ -10,6 +10,7 @@ import { TabIconLabel, TabIconWrapper } from './styles';
 // Screens
 import Home from '../screens/Home';
 import Search from '../screens/Search';
+import Story from '../screens/Story';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -67,6 +68,7 @@ const BottomTabNavigator = () => {
     </Tab.Navigator>
   );
 };
+
 const RootNavigator: React.FC = () => {
   return (
     <SafeAreaProvider>
@@ -75,6 +77,11 @@ const RootNavigator: React.FC = () => {
           <Stack.Screen
             name="Root"
             component={BottomTabNavigator}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Story"
+            component={Story}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

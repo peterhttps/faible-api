@@ -1,5 +1,7 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+
 import {
   Description,
   ImageInfosContainer,
@@ -16,8 +18,13 @@ interface IProps {
 }
 
 const FableItem: React.FC<IProps> = ({ title, description, image }: IProps) => {
+  const navigation = useNavigation();
+
   return (
-    <Wrapper activeOpacity={0.8}>
+    <Wrapper
+      activeOpacity={0.8}
+      onPress={() => navigation.navigate('Story' as never)}
+    >
       <ImageInfosContainer>
         <ItemImage
           source={{
