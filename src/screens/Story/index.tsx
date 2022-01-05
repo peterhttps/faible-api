@@ -1,5 +1,8 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { addStory } from '../../store/stories/actions';
+
 import {
   GenreCard,
   GenreContainer,
@@ -13,8 +16,6 @@ import {
   StoryTitle,
   Wrapper,
 } from './styles';
-import { useNavigation } from '@react-navigation/native';
-// import { Container } from './styles';
 
 const imageURL =
   'https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80';
@@ -29,6 +30,13 @@ Nullam semper placerat neque. Mauris nec tristique nunc. Praesent eget auctor to
 
 const Story: React.FC = () => {
   const navigation = useNavigation();
+  const storie = {
+    title: `O Conto Secreto ${Math.random()}`,
+    author: 'Sotira Jano',
+    storyText: textStory,
+    bannerImage: imageURL,
+    storyGenres: ['Aventura', 'Fantasia'],
+  };
 
   return (
     <Wrapper>
@@ -41,13 +49,13 @@ const Story: React.FC = () => {
           <HeaderButton activeOpacity={0.8} onPress={() => navigation.goBack()}>
             <Ionicons name="arrow-back-outline" color="#6A040F" size={15} />
           </HeaderButton>
-          <HeaderButton activeOpacity={0.8}>
+          <HeaderButton activeOpacity={0.8} onPress={() => addStory(storie)}>
             <Ionicons name="heart-outline" color="#6A040F" size={15} />
           </HeaderButton>
         </HeaderButtonsContainer>
       </StoryHeader>
       <StoryBody>
-        <StoryTitle>O Conto Secreto</StoryTitle>
+        <StoryTitle>{storie.title}</StoryTitle>
         <StoryAuthor>Sotira Jano</StoryAuthor>
         <GenreContainer>
           <GenreCard>
