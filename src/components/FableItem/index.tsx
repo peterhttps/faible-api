@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -10,6 +10,8 @@ import {
   Title,
   Wrapper,
 } from './styles';
+import { useStories } from '../hooks/useStories';
+import { removeStory } from '../../store/stories/actions';
 
 interface IProps {
   title: string;
@@ -19,6 +21,18 @@ interface IProps {
 
 const FableItem: React.FC<IProps> = ({ title, description, image }: IProps) => {
   const navigation = useNavigation();
+  const { stories } = useStories();
+  const [isFavorited, setIsFavorited] = useState(false);
+
+  useEffect(() => {
+    if (stories.some(item => item.title === title)) {
+      setIsFavorited(true);
+    }
+  }, [stories, title]);
+
+  const removeStoryStorage = () => {
+    removeStory(title);
+  };
 
   return (
     <Wrapper
@@ -37,9 +51,18 @@ const FableItem: React.FC<IProps> = ({ title, description, image }: IProps) => {
         </InfosContainer>
       </ImageInfosContainer>
 
-      <Ionicons name="heart-outline" size={24} color="#000" />
+      {isFavorited ? (
+        <Ionicons
+          name="heart-sharp"
+          size={24}
+          color="#000"
+          onPress={removeStoryStorage}
+        />
+      ) : (
+        <Ionicons name="heart-outline" size={24} color="#000" />
+      )}
     </Wrapper>
   );
 };
 
-export default FableItem;
+export default React.memo(FableItem);

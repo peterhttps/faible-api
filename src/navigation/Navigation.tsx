@@ -11,6 +11,7 @@ import { TabIconLabel, TabIconWrapper } from './styles';
 import Home from '../screens/Home';
 import Search from '../screens/Search';
 import Story from '../screens/Story';
+import Favorites from '../screens/Favorites';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -57,7 +58,7 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Favorites"
-        component={Home}
+        component={Favorites}
         options={{ headerShown: false }}
       />
       <Tab.Screen

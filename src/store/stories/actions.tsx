@@ -21,11 +21,9 @@ export const addStory = (story: IStory) =>
     setStoriesStorage(s.stories);
   });
 
-export const removeStory = (story: IStory) =>
+export const removeStory = (title: string) =>
   StoriesStore.update(s => {
-    const removedStoryArray = s.stories.filter(
-      item => item.title !== story.title,
-    );
+    const removedStoryArray = s.stories.filter(item => item.title !== title);
     s.stories = removedStoryArray;
     setStoriesStorage(s.stories);
   });
