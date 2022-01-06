@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { TouchableOpacity } from 'react-native';
+import { useStories } from '../hooks/useStories';
+import { removeStory } from '../../store/stories/actions';
 
 import {
   Description,
@@ -10,8 +13,6 @@ import {
   Title,
   Wrapper,
 } from './styles';
-import { useStories } from '../hooks/useStories';
-import { removeStory } from '../../store/stories/actions';
 
 interface IProps {
   title: string;
@@ -52,14 +53,18 @@ const FableItem: React.FC<IProps> = ({ title, description, image }: IProps) => {
       </ImageInfosContainer>
 
       {isFavorited ? (
-        <Ionicons
-          name="heart-sharp"
-          size={24}
-          color="#000"
-          onPress={removeStoryStorage}
-        />
+        <TouchableOpacity activeOpacity={0.2} onPress={removeStoryStorage}>
+          <Ionicons
+            name="heart-sharp"
+            size={24}
+            color="#000"
+            onPress={removeStoryStorage}
+          />
+        </TouchableOpacity>
       ) : (
-        <Ionicons name="heart-outline" size={24} color="#000" />
+        <TouchableOpacity activeOpacity={0.2}>
+          <Ionicons name="heart-outline" size={24} color="#000" />
+        </TouchableOpacity>
       )}
     </Wrapper>
   );
