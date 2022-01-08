@@ -47,11 +47,13 @@ const Story: React.FC = () => {
   useEffect(() => {
     if (stories.some(item => item.id === route.params.story.id)) {
       setIsFavorited(true);
+    } else {
+      setIsFavorited(false);
     }
   }, [route.params.story.id, stories]);
 
   const storie = {
-    id: '10',
+    id: route.params.story.id,
     title: `O Conto Secreto`,
     description: 'O que será que aconteceu nessa casa?',
     author: 'Sotira Jano',

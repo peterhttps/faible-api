@@ -3,7 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { Alert, TouchableOpacity } from 'react-native';
 import { useStories } from '../hooks/useStories';
-import { removeStory } from '../../store/stories/actions';
+import { addStory, removeStory } from '../../store/stories/actions';
 
 import {
   Description,
@@ -13,40 +13,42 @@ import {
   Title,
   Wrapper,
 } from './styles';
+import IStory from '../../interfaces/IStory';
 
 interface IProps {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
+  story: IStory;
 }
 
-const FableItem: React.FC<IProps> = ({
-  id,
-  title,
-  description,
-  image,
-}: IProps) => {
+const FableItem: React.FC<IProps> = ({ story }: IProps) => {
   const navigation = useNavigation();
   const { stories } = useStories();
   const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
-    if (stories.some(item => item.title === title)) {
+    if (stories.some(item => item.id === story.id)) {
+      setIsFavorited(true);
+    } else {
+      setIsFavorited(false);
+    }
+  }, [stories, story.id]);
+
+  const favoriteAction = () => {
+    if (isFavorited) {
+      removeStory(story.id);
+      Alert.alert('', 'História removida dos favoritos!');
+      setIsFavorited(false);
+    } else {
+      addStory(story);
+      Alert.alert('', 'História adicionada aos favoritos!');
       setIsFavorited(true);
     }
-  }, [stories, title]);
-
-  const removeStoryStorage = () => {
-    removeStory(id);
-    Alert.alert('', 'História removida dos favoritos!');
   };
 
   const navigateStory = () => {
     navigation.navigate(
       'Story' as never,
       {
-        story: { id: id as never },
+        story: { id: story.id as never },
       } as never,
     );
   };
@@ -56,26 +58,21 @@ const FableItem: React.FC<IProps> = ({
       <ImageInfosContainer>
         <ItemImage
           source={{
-            uri: image,
+            uri: story.bannerImage,
           }}
         />
         <InfosContainer>
-          <Title>{title}</Title>
-          <Description>{description}</Description>
+          <Title>{story.title}</Title>
+          <Description>{story.description}</Description>
         </InfosContainer>
       </ImageInfosContainer>
 
       {isFavorited ? (
-        <TouchableOpacity activeOpacity={0.2} onPress={removeStoryStorage}>
-          <Ionicons
-            name="heart-sharp"
-            size={24}
-            color="#000"
-            onPress={removeStoryStorage}
-          />
+        <TouchableOpacity activeOpacity={0.2} onPress={favoriteAction}>
+          <Ionicons name="heart-sharp" size={24} color="#000" />
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity activeOpacity={0.2}>
+        <TouchableOpacity activeOpacity={0.2} onPress={favoriteAction}>
           <Ionicons name="heart-outline" size={24} color="#000" />
         </TouchableOpacity>
       )}

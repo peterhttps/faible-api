@@ -24,15 +24,7 @@ const Favorites: React.FC = () => {
       ) : (
         <FavoritesList>
           {stories.map(item => {
-            return (
-              <FableItem
-                id={item.id}
-                key={item.title}
-                title={item.title}
-                description={item.description}
-                image={item.bannerImage}
-              />
-            );
+            return <FableItem key={item.title} story={item} />;
           })}
         </FavoritesList>
       )}

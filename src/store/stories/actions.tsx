@@ -15,9 +15,9 @@ export const setStories = (stories: IStory[]) =>
     s.stories = stories;
   });
 
-export const addStory = (story: IStory) =>
+export const addStory = (story: IStory | null) =>
   StoriesStore.update(s => {
-    s.stories.push(story);
+    if (story) s.stories.push(story);
     setStoriesStorage(s.stories);
   });
 
