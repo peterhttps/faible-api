@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native';
+import { Alert, TouchableOpacity } from 'react-native';
 import { useStories } from '../hooks/useStories';
 import { removeStory } from '../../store/stories/actions';
 
@@ -39,6 +39,7 @@ const FableItem: React.FC<IProps> = ({
 
   const removeStoryStorage = () => {
     removeStory(id);
+    Alert.alert('', 'História removida dos favoritos!');
   };
 
   const navigateStory = () => {
