@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import { addStory } from '../../store/stories/actions';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { Alert } from 'react-native';
+import { addStory, removeStory } from '../../store/stories/actions';
 
 import {
   GenreCard,
@@ -16,6 +17,8 @@ import {
   StoryTitle,
   Wrapper,
 } from './styles';
+import { useStories } from '../../components/hooks/useStories';
+import IStory from '../../interfaces/IStory';
 
 const imageURL =
   'https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80';
@@ -28,14 +31,45 @@ Nunc odio eros, convallis nec felis quis, porttitor ultrices velit. Praesent ele
 
 Nullam semper placerat neque. Mauris nec tristique nunc. Praesent eget auctor tortor. Nulla luctus porta nisl, ut viverra lorem eleifend sit amet. Curabitur vel ante sit amet elit lacinia ullamcorper eu in elit. Vestibulum hendrerit venenatis faucibus. Pellentesque vulputate nisi eros, consequat pretium nulla hendrerit sed. Aliquam rhoncus, justo in tincidunt dignissim, tellus mi convallis urna, sed viverra dui quam sed odio. Maecenas arcu neque, blandit sit amet nunc vel, bibendum luctus ipsum. Etiam id luctus orci. Maecenas tincidunt purus nisi, nec convallis dolor auctor id. Donec quis pellentesque erat. Vestibulum pellentesque felis et rutrum suscipit. Morbi sit amet cursus dui.`;
 
+type ParamList = {
+  Detail: {
+    story: IStory;
+  };
+};
+
 const Story: React.FC = () => {
   const navigation = useNavigation();
+  const route = useRoute<RouteProp<ParamList, 'Detail'>>();
+
+  const [isFavorited, setIsFavorited] = useState(false);
+  const { stories } = useStories();
+
+  useEffect(() => {
+    if (stories.some(item => item.id === route.params.story.id)) {
+      setIsFavorited(true);
+    }
+  }, [route.params.story.id, stories]);
+
   const storie = {
-    title: `O Conto Secreto ${Math.random()}`,
+    id: '10',
+    title: `O Conto Secreto`,
+    description: 'O que será que aconteceu nessa casa?',
     author: 'Sotira Jano',
     storyText: textStory,
     bannerImage: imageURL,
     storyGenres: ['Aventura', 'Fantasia'],
+  };
+
+  const favoriteAction = () => {
+    if (isFavorited) {
+      removeStory(storie.id);
+      Alert.alert('', 'História removida dos favoritos!');
+      setIsFavorited(false);
+    } else {
+      addStory(storie);
+      Alert.alert('', 'História adicionada aos favoritos!');
+      setIsFavorited(true);
+    }
   };
 
   return (
@@ -49,8 +83,12 @@ const Story: React.FC = () => {
           <HeaderButton activeOpacity={0.8} onPress={() => navigation.goBack()}>
             <Ionicons name="arrow-back-outline" color="#6A040F" size={15} />
           </HeaderButton>
-          <HeaderButton activeOpacity={0.8} onPress={() => addStory(storie)}>
-            <Ionicons name="heart-outline" color="#6A040F" size={15} />
+          <HeaderButton activeOpacity={0.8} onPress={favoriteAction}>
+            {isFavorited ? (
+              <Ionicons name="heart-sharp" color="#6A040F" size={15} />
+            ) : (
+              <Ionicons name="heart-outline" color="#6A040F" size={15} />
+            )}
           </HeaderButton>
         </HeaderButtonsContainer>
       </StoryHeader>

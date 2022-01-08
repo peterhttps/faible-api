@@ -3,8 +3,6 @@ import FableItem from '../../components/FableItem';
 import { useStories } from '../../components/hooks/useStories';
 import { FavoritesList, TitleHeader, Wrapper } from './styles';
 
-// import { Container } from './styles';
-
 const Favorites: React.FC = () => {
   const { stories } = useStories();
 
@@ -15,6 +13,7 @@ const Favorites: React.FC = () => {
         {stories.map(item => {
           return (
             <FableItem
+              id={item.id}
               key={item.title}
               title={item.title}
               description={item.description}

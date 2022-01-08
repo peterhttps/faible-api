@@ -15,12 +15,18 @@ import {
 } from './styles';
 
 interface IProps {
+  id: string;
   title: string;
   description: string;
   image: string;
 }
 
-const FableItem: React.FC<IProps> = ({ title, description, image }: IProps) => {
+const FableItem: React.FC<IProps> = ({
+  id,
+  title,
+  description,
+  image,
+}: IProps) => {
   const navigation = useNavigation();
   const { stories } = useStories();
   const [isFavorited, setIsFavorited] = useState(false);
@@ -32,14 +38,20 @@ const FableItem: React.FC<IProps> = ({ title, description, image }: IProps) => {
   }, [stories, title]);
 
   const removeStoryStorage = () => {
-    removeStory(title);
+    removeStory(id);
+  };
+
+  const navigateStory = () => {
+    navigation.navigate(
+      'Story' as never,
+      {
+        story: { id: id as never },
+      } as never,
+    );
   };
 
   return (
-    <Wrapper
-      activeOpacity={0.8}
-      onPress={() => navigation.navigate('Story' as never)}
-    >
+    <Wrapper activeOpacity={0.8} onPress={navigateStory}>
       <ImageInfosContainer>
         <ItemImage
           source={{

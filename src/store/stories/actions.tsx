@@ -21,9 +21,9 @@ export const addStory = (story: IStory) =>
     setStoriesStorage(s.stories);
   });
 
-export const removeStory = (title: string) =>
+export const removeStory = (id: string) =>
   StoriesStore.update(s => {
-    const removedStoryArray = s.stories.filter(item => item.title !== title);
+    const removedStoryArray = s.stories.filter(item => item.id !== id);
     s.stories = removedStoryArray;
     setStoriesStorage(s.stories);
   });
@@ -53,9 +53,7 @@ export const removeStoryStorage = async (value: IStory) => {
   try {
     const actualStorage = await AsyncStorage.getItem('@stories');
     const stories: IStory[] = JSON.parse(actualStorage || '[]');
-    const newStories: IStory[] = stories.filter(
-      item => item.title !== value.title,
-    );
+    const newStories: IStory[] = stories.filter(item => item.id !== value.id);
     await AsyncStorage.setItem('@stories', JSON.stringify(newStories));
   } catch (e) {
     // remove error

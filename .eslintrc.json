@@ -46,6 +46,7 @@
     "import/no-extraneous-dependencies": "off",
     "func-names": "off",
     "no-console": "off",
-    "no-param-reassign":"off"
+    "no-param-reassign":"off",
+    "no-alert":"off"
   }
 }
