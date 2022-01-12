@@ -12,6 +12,7 @@ import Home from '../screens/Home';
 import Search from '../screens/Search';
 import Story from '../screens/Story';
 import Favorites from '../screens/Favorites';
+import Settings from '../screens/Settings';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -63,7 +64,7 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Settings"
-        component={Home}
+        component={Settings}
         options={{ headerShown: false }}
       />
     </Tab.Navigator>
