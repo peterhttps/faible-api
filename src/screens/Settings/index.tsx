@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ToggleSwitch from 'toggle-switch-react-native';
-import { useSettings } from '../../components/hooks/useSettings';
 import { setAdultContentSettings } from '../../store/settings/actions';
 
 import {
@@ -13,7 +12,6 @@ import {
 
 const Settings: React.FC = () => {
   const [isEnabled, setIsEnabled] = useState(false);
-  const { adultContent } = useSettings();
 
   const toggleSwitch = () => {
     setIsEnabled(previousState => !previousState);
