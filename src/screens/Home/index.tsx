@@ -4,6 +4,7 @@ import ExploreComponent from '../../components/ExploreComponent';
 import FableList from '../../components/FableList';
 import RecentsCarousel from '../../components/RecentsCarousel';
 import { getHome } from '../../services/stories';
+import { setHomeStore } from '../../store/home/actions';
 
 import { DescriptionTitle, TitleOrange, TitlePurple, Wrapper } from './styles';
 
@@ -12,12 +13,13 @@ const wait = (timeout: number) => {
 };
 const Home: React.FC = () => {
   const [refreshing, setRefreshing] = React.useState(false);
-  const [loading, setLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const getHomeData = useCallback(async () => {
     try {
       const homeResponse = await getHome();
-      setLoading(false);
+      setIsLoading(false);
+      setHomeStore(homeResponse.data);
     } catch {
       console.log('Error');
     }
@@ -31,6 +33,10 @@ const Home: React.FC = () => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   }, []);
+
+  if (isLoading) {
+    return <Wrapper />;
+  }
 
   return (
     <Wrapper

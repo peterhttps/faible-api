@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { Alert } from 'react-native';
@@ -19,6 +19,7 @@ import {
 } from './styles';
 import { useStories } from '../../components/hooks/useStories';
 import IStory from '../../interfaces/IStory';
+import { getStory } from '../../services/stories';
 
 const imageURL =
   'https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80';
@@ -42,7 +43,23 @@ const Story: React.FC = () => {
   const route = useRoute<RouteProp<ParamList, 'Detail'>>();
 
   const [isFavorited, setIsFavorited] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [actualStory, setActualStory] = useState<IStory | null>(null);
   const { stories } = useStories();
+
+  const fetchStory = useCallback(async () => {
+    try {
+      const storyResponse = await getStory(route.params.story.id);
+      setIsLoading(false);
+      setActualStory(storyResponse.data);
+    } catch {
+      console.log('Error');
+    }
+  }, [route.params.story.id]);
+
+  useEffect(() => {
+    fetchStory();
+  }, [fetchStory]);
 
   useEffect(() => {
     if (stories.some(item => item.id === route.params.story.id)) {
@@ -52,32 +69,26 @@ const Story: React.FC = () => {
     }
   }, [route.params.story.id, stories]);
 
-  const storie = {
-    id: route.params.story.id,
-    title: `O Conto Secreto`,
-    description: 'O que será que aconteceu nessa casa?',
-    author: 'Sotira Jano',
-    storyText: textStory,
-    bannerImage: imageURL,
-    storyGenres: ['Aventura', 'Fantasia'],
-  };
-
   const favoriteAction = () => {
     if (isFavorited) {
-      removeStory(storie.id);
+      removeStory(actualStory?.id || '');
       Alert.alert('', 'História removida dos favoritos!');
       setIsFavorited(false);
     } else {
-      addStory(storie);
+      addStory(actualStory);
       Alert.alert('', 'História adicionada aos favoritos!');
       setIsFavorited(true);
     }
   };
 
+  if (isLoading) {
+    return <Wrapper />;
+  }
+
   return (
     <Wrapper>
       <StoryHeader
-        source={{ uri: imageURL }}
+        source={{ uri: actualStory?.bannerImage }}
         resizeMode="cover"
         imageStyle={{ borderBottomRightRadius: 10, borderBottomLeftRadius: 10 }}
       >
@@ -95,8 +106,8 @@ const Story: React.FC = () => {
         </HeaderButtonsContainer>
       </StoryHeader>
       <StoryBody>
-        <StoryTitle>{storie.title}</StoryTitle>
-        <StoryAuthor>Sotira Jano</StoryAuthor>
+        <StoryTitle>{actualStory?.title}</StoryTitle>
+        <StoryAuthor>{actualStory?.author}</StoryAuthor>
         <GenreContainer>
           <GenreCard>
             <GenreTitle>Aventura</GenreTitle>
@@ -105,7 +116,7 @@ const Story: React.FC = () => {
             <GenreTitle>Fantasia</GenreTitle>
           </GenreCard>
         </GenreContainer>
-        <StoryContainer>{textStory}</StoryContainer>
+        <StoryContainer>{actualStory?.storyText}</StoryContainer>
       </StoryBody>
     </Wrapper>
   );
