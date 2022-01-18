@@ -14,7 +14,7 @@ import {
 const Settings: React.FC = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const { adultContent } = useSettings();
-  console.log(adultContent);
+
   const toggleSwitch = () => {
     setIsEnabled(previousState => !previousState);
     setAdultContentSettings(!isEnabled);
