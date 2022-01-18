@@ -2,3 +2,4 @@ tsconfig.json
 package.json
 app.json
 .eslintrc.json
+babel.config.js
