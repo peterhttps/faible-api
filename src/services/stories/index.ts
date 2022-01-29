@@ -10,3 +10,9 @@ export const getHome = (): Promise<AxiosResponse<IHome>> => {
 export const getStory = (id: string): Promise<AxiosResponse<IStory>> => {
   return api.get(`/story/${id}`);
 };
+
+export const searchStories = (
+  param: string,
+): Promise<AxiosResponse<IStory[]>> => {
+  return api.get(`/search/${param}`);
+};

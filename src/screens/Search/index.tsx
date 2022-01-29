@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -14,13 +14,27 @@ import {
   SearchInput,
   Wrapper,
 } from './styles';
+import { searchStories } from '../../services/stories';
 
 const Search: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+
+  const search = useCallback(async () => {
+    setLoading(true);
+    const stories = await searchStories(inputValue);
+    console.log(stories.data);
+    setLoading(false);
+  }, [inputValue]);
+
   return (
     <Wrapper>
       <SearchContainer>
-        <SearchInput placeholder="Pesquisar" />
-        <TouchableOpacity>
+        <SearchInput
+          placeholder="Pesquisar"
+          onChangeText={newText => setInputValue(newText)}
+        />
+        <TouchableOpacity onPress={search}>
           <Ionicons name="search" color="#aaa" size={24} />
         </TouchableOpacity>
       </SearchContainer>
