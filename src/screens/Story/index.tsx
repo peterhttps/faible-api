@@ -109,12 +109,13 @@ const Story: React.FC = () => {
         <StoryTitle>{actualStory?.title}</StoryTitle>
         <StoryAuthor>{actualStory?.author}</StoryAuthor>
         <GenreContainer>
-          <GenreCard>
-            <GenreTitle>Aventura</GenreTitle>
-          </GenreCard>
-          <GenreCard>
-            <GenreTitle>Fantasia</GenreTitle>
-          </GenreCard>
+          {actualStory?.genres?.map(genre => {
+            return (
+              <GenreCard key={genre}>
+                <GenreTitle>{genre}</GenreTitle>
+              </GenreCard>
+            );
+          })}
         </GenreContainer>
         <StoryContainer>{actualStory?.storyText}</StoryContainer>
       </StoryBody>

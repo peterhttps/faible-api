@@ -4,6 +4,6 @@ export default interface IStory {
   author: string;
   description: string;
   storyText?: string;
-  storyGenres?: string[];
+  genres?: string[];
   bannerImage: string;
 }
