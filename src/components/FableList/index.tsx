@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FableItem from '../FableItem';
-import { useHome } from '../hooks/useHome';
+import { useHome } from '../../hooks/useHome';
 import { Wrapper } from './styles';
 
 const FableList: React.FC = () => {

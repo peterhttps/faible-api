@@ -1,6 +1,6 @@
 import React from 'react';
 import FableItem from '../../components/FableItem';
-import { useStories } from '../../components/hooks/useStories';
+import { useStories } from '../../hooks/useStories';
 import {
   EmptyFavoritesContainer,
   EmptyFavoritesMessage,

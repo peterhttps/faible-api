@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { Alert, TouchableOpacity } from 'react-native';
-import { useStories } from '../hooks/useStories';
+import { useStories } from '../../hooks/useStories';
 import { addStory, removeStory } from '../../store/stories/actions';
 
 import {

@@ -1,4 +1,4 @@
-import { HomeStore } from '../../store/home';
+import { HomeStore } from '../store/home';
 
 const useHome = () => HomeStore.useState(s => s);
 

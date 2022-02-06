@@ -1,4 +1,4 @@
-import { SettingsStore } from '../../store/settings';
+import { SettingsStore } from '../store/settings';
 
 const useSettings = () => SettingsStore.useState(s => s);
 

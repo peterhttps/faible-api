@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import ToggleSwitch from 'toggle-switch-react-native';
-import { setAdultContentSettings } from '../../store/settings/actions';
+import { useSettings } from '../../hooks/useSettings';
+import {
+  setAdultContentSettings,
+  setSettings,
+} from '../../store/settings/actions';
 
 import {
   SettingsCard,
@@ -12,10 +16,12 @@ import {
 
 const Settings: React.FC = () => {
   const [isEnabled, setIsEnabled] = useState(false);
+  const { adultContent } = useSettings();
 
   const toggleSwitch = () => {
     setIsEnabled(previousState => !previousState);
     setAdultContentSettings(!isEnabled);
+    setSettings({ adultContent: !isEnabled });
   };
 
   return (
@@ -25,7 +31,7 @@ const Settings: React.FC = () => {
         <SettingsCard notBorderTop notBorderBottom>
           <SettingsCardTitle>Filtrar conteúdo adulto</SettingsCardTitle>
           <ToggleSwitch
-            isOn={isEnabled}
+            isOn={adultContent}
             onToggle={toggleSwitch}
             animationSpeed={150}
             label={isEnabled ? 'On' : 'Off'}

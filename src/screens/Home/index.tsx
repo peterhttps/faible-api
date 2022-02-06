@@ -3,6 +3,7 @@ import { RefreshControl } from 'react-native';
 import ExploreComponent from '../../components/ExploreComponent';
 import FableList from '../../components/FableList';
 import RecentsCarousel from '../../components/RecentsCarousel';
+import { useSettings } from '../../hooks/useSettings';
 import { getHome } from '../../services/stories';
 import { setHomeStore } from '../../store/home/actions';
 
@@ -14,16 +15,17 @@ const wait = (timeout: number) => {
 const Home: React.FC = () => {
   const [refreshing, setRefreshing] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
+  const { adultContent } = useSettings();
 
   const getHomeData = useCallback(async () => {
     try {
-      const homeResponse = await getHome();
+      const homeResponse = await getHome(adultContent);
       setIsLoading(false);
       setHomeStore(homeResponse.data);
     } catch {
       console.log('Error');
     }
-  }, []);
+  }, [adultContent]);
 
   useEffect(() => {
     getHomeData();

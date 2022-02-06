@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import { useHome } from '../hooks/useHome';
+import { useHome } from '../../hooks/useHome';
 
 import {
   BackgroundImageContainer,

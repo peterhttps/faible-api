@@ -3,8 +3,14 @@ import IHome from '../../interfaces/IHome';
 import IStory from '../../interfaces/IStory';
 import api from '../api';
 
-export const getHome = (): Promise<AxiosResponse<IHome>> => {
-  return api.get('/home');
+export const getHome = (
+  adultContent: boolean,
+): Promise<AxiosResponse<IHome>> => {
+  return api.get('/home', {
+    params: {
+      adultContent,
+    },
+  });
 };
 
 export const getStory = (id: string): Promise<AxiosResponse<IStory>> => {

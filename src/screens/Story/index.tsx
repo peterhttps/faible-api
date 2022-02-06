@@ -17,7 +17,7 @@ import {
   StoryTitle,
   Wrapper,
 } from './styles';
-import { useStories } from '../../components/hooks/useStories';
+import { useStories } from '../../hooks/useStories';
 import IStory from '../../interfaces/IStory';
 import { getStory } from '../../services/stories';
 

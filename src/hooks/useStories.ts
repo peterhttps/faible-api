@@ -1,4 +1,4 @@
-import { StoriesStore } from '../../store/stories';
+import { StoriesStore } from '../store/stories';
 
 const useStories = () => StoriesStore.useState(s => s);
 
