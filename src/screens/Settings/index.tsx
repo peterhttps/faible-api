@@ -34,7 +34,7 @@ const Settings: React.FC = () => {
             isOn={adultContent}
             onToggle={toggleSwitch}
             animationSpeed={150}
-            label={isEnabled ? 'On' : 'Off'}
+            label={adultContent ? 'On' : 'Off'}
             labelStyle={{
               color: '#8A8A8A',
             }}
