@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   DescriptionTitle,
@@ -17,15 +18,19 @@ import {
 import { searchStories } from '../../services/stories';
 
 const Search: React.FC = () => {
+  const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
   const search = useCallback(async () => {
-    setLoading(true);
-    const stories = await searchStories(inputValue);
-    console.log(stories.data);
-    setLoading(false);
-  }, [inputValue]);
+    console.log("BAtEU");
+    navigation.navigate(
+      'SearchResult' as never,
+      {
+        searchKey: inputValue as never,
+      } as never,
+    );
+  }, [inputValue, navigation]);
 
   return (
     <Wrapper>

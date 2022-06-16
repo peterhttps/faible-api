@@ -13,6 +13,7 @@ import Search from '../screens/Search';
 import Story from '../screens/Story';
 import Favorites from '../screens/Favorites';
 import Settings from '../screens/Settings';
+import SearchResult from '../screens/SearchResult';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -84,6 +85,11 @@ const RootNavigator: React.FC = () => {
           <Stack.Screen
             name="Story"
             component={Story}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SearchResult"
+            component={SearchResult}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

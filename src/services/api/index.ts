@@ -3,7 +3,7 @@ import { BASE_URL } from '@env';
 
 console.log(BASE_URL);
 const api = axios.create({
-  baseURL: BASE_URL,
+  baseURL: 'http://192.168.0.7:3333',
 });
 
 export default api;
